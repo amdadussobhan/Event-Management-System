@@ -1,7 +1,7 @@
 <?php
-$pageTitle = 'Sign up | EMS';
+$pageTitle = 'Login | EMS';
 
-// Include the header
+// Including header
 include 'header.php';
 session_start();
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
@@ -26,16 +26,8 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 
     <div class="card w-50 mx-auto">
         <div class="card-body">
-            <h3 class="card-title py-3">Complete Your Sign up</h3>
-            <form action="register_action.php" method="POST" class="">
-                <div class="col input-group my-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
-                    <input type="text" class="form-control" name="name" value="<?php echo isset($form_data['name']) ? htmlspecialchars($form_data['name']) : ''; ?>" required>
-                </div>
-                <?php if (isset($errors['name'])): ?>
-                    <span class="error text-danger"><?php echo $errors['name']; ?></span>
-                <?php endif; ?>
-
+            <h3 class="card-title py-3">Login First</h3>
+            <form action="login_action.php" method="POST" class="">
                 <div class="col input-group my-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
                     <input type="text" class="form-control" name="email" value="<?php echo isset($form_data['email']) ? htmlspecialchars($form_data['email']) : ''; ?>" required>
@@ -46,26 +38,17 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 
                 <div class="col input-group my-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
-                    <input type="text" class="form-control" name="password1" required>
-                </div>
-                <?php if (isset($errors['password'])): ?>
-                    <span class="error text-danger"><?php echo $errors['password']; ?></span>
-                <?php endif; ?>
-
-                <div class="col input-group my-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Confirm Password</span>
-                    <input type="text" class="form-control" name="password2" required>
+                    <input type="text" class="form-control" name="password" required>
                 </div>
                 <?php if (isset($errors['password'])): ?>
                     <span class="error text-danger"><?php echo $errors['password']; ?></span>
                     <br>
                 <?php endif; ?>
 
-                <button type="submit" required class="btn btn-success col-3 my-3">Submit</button>
+                <button type="submit" required class="btn btn-success col-3 my-3">Login</button>
             </form>
         </div>
     </div>
-
 </div>
 
 <!-- Include the footer -->

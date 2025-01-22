@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['name'] = 'Name is required.';
     if (empty($email))
         $errors['email'] = 'Email is required.';
+    
     if (empty($password1) || empty($password2))
         $errors['password'] = 'Both password fields are required.';
     elseif ($password1 != $password2)
@@ -55,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($stmt->execute()) {
             // Store success message in the session
-            $_SESSION['success'] = "Registration successful! You can now log in.";
+            $_SESSION['success'] = "Registration successful!. You can now log in.";
             unset($_SESSION['errors']);  // Clear the errors message after successfully registered
             unset($_SESSION['form_data']);  // Clear the form data after successfully registered
-            header('Location: login.php');  // Redirect to the home page
+            header('Location: login_form.php');  // Redirect to the home page
             $stmt->close();
             $conn->close();
             exit();
