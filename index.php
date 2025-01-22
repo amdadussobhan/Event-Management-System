@@ -1,6 +1,6 @@
 <?php
+include 'authenticator.php';
 $pageTitle = 'Home';
-session_start();  // Start the session to store error messages and form data
 
 // Include the header
 include 'header.php';

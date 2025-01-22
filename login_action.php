@@ -25,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // If no errors, proceed with the registration logic
     include 'db_connect.php';
     // Check if the user exists
-    $stmt = $conn->prepare("SELECT id, name, password_hash, role FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, name, email, password_hash, role FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($id, $name, $password_hash, $role);
+    $stmt->bind_result($id, $name, $email, $password_hash, $role);
     $stmt->fetch();
     $conn->close();
 
@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $password_hash)) {
             $_SESSION['user_id'] = $id;
             $_SESSION['name'] = $name;
+            $_SESSION['email'] = $email;
             $_SESSION['role'] = $role;
             $_SESSION['success'] = "Login successful!. You can now access everything.";
             header("Location: index.php");  // Redirect to the home page

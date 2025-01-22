@@ -1,9 +1,19 @@
 <?php
 $pageTitle = 'Login | EMS';
 
-// Including header
+// Include header
 include 'header.php';
 session_start();
+
+// Check if the user is logged in by verifying if 'user_id' is set
+if (isset($_SESSION['user_id'])) {
+    // If the user is not logged in, redirect to the login page
+    $_SESSION['info'] = "You are already loged in!. Logout first if you want to login another account.";
+    header('Location: index.php');
+    exit();  // Stop further execution of the script
+}
+
+// If the user is logged in, continue to the home page content
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
 $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 ?>
