@@ -40,7 +40,7 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
             <form action="login_action.php" method="POST" class="">
                 <div class="col input-group my-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
-                    <input type="text" class="form-control" name="email" value="<?php echo isset($form_data['email']) ? htmlspecialchars($form_data['email']) : ''; ?>" required>
+                    <input type="email" class="form-control" name="email" value="<?php echo isset($form_data['email']) ? htmlspecialchars($form_data['email']) : ''; ?>" required>
                 </div>
                 <?php if (isset($errors['email'])): ?>
                     <span class="error text-danger"><?php echo $errors['email']; ?></span>
@@ -48,7 +48,7 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 
                 <div class="col input-group my-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
-                    <input type="text" class="form-control" name="password" required>
+                    <input type="password" class="form-control" name="password" required>
                 </div>
                 <?php if (isset($errors['password'])): ?>
                     <span class="error text-danger"><?php echo $errors['password']; ?></span>

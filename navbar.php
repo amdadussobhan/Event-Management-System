@@ -10,7 +10,7 @@
                     <a class="nav-link py-3" href="/ems/"><b>Home</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link py-3" href="events.php"><b>Events</b></a>
+                    <a class="nav-link py-3" href="event_form.php"><b>Events</b></a>
                 </li>
             </ul>
 
