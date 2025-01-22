@@ -18,13 +18,13 @@
             
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item d-flex ">
-                    <a class="nav-link" href="login.php">Login</a>
+                    <a class="nav-link" href="login_form.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link" href="logout_action.php">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="register.php">Sign up</a>
+                    <a class="nav-link" href="register_form.php">Sign up</a>
                 </li>
             </ul>
         </div>
