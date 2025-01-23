@@ -1,9 +1,9 @@
 <?php
+session_start();
 $pageTitle = 'Login | EMS';
 
 // Include header
 include 'header.php';
-session_start();
 
 // Check if the user is logged in by verifying if 'user_id' is set
 if (isset($_SESSION['user_id'])) {
@@ -34,7 +34,7 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
     }
     ?>
 
-    <div class="card w-50 mx-auto">
+    <div class="card w-50 mx-auto shadow px-3">
         <div class="card-body">
             <h3 class="card-title py-3">Login First</h3>
             <form action="login_action.php" method="POST" class="">

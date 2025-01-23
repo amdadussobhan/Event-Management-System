@@ -1,5 +1,5 @@
 <?php
-include 'authenticator.php';
+include 'verify_user.php';
 $pageTitle = 'Home';
 
 // Include the header

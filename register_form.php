@@ -1,9 +1,9 @@
 <?php
+session_start();
 $pageTitle = 'Sign up | EMS';
 
 // Include the header
 include 'header.php';
-session_start();
 
 // Check if the user is logged in by verifying if 'user_id' is set
 if (isset($_SESSION['user_id'])) {
@@ -21,7 +21,7 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 <div class="container my-5 text-center">
     <?php include 'message.php' ?>
 
-    <div class="card w-50 mx-auto">
+    <div class="card w-50 mx-auto shadow px-3">
         <div class="card-body">
             <h3 class="card-title py-3">Complete Your Sign up</h3>
             <form action="register_action.php" method="POST" class="">

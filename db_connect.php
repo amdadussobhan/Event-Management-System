@@ -2,7 +2,7 @@
 // Database connection details
 $host = 'localhost';     // Database host (usually localhost)
 $user = 'root';           // Database username
-$pass = 'Amdad@O11yo';               // Database password (leave blank if no password)
+$pass = 'a';               // Database password (leave blank if no password)
 $db = 'event_management'; // Database name
 
 // Create a new MySQLi connection

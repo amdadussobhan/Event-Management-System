@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 'admin') {
         $_SESSION['success'] = "Event created successfully!.";
         unset($_SESSION['errors']);  // Clear the errors message after successfully registered
         unset($_SESSION['form_data']);  // Clear the form data after successfully registered
-        header('Location: index.php');  // Redirect to the home page
+        header('Location: event_list.php');  // Redirect to the home page
     } else {
         $errors['info'] = 'Something went wrong, Try again.';
         $_SESSION['errors'] = $errors;

@@ -1,19 +1,9 @@
 <?php
+include 'verify_admin.php';
 $pageTitle = 'Create Event | EMS';
 
 // Include the header
 include 'header.php';
-session_start();
-
-// Check if the user is logged in as admin.
-if (isset($_SESSION['user_id'])) {
-    if ($_SESSION['role'] != 'admin') {
-        // If the user is not logged in as admin, redirect to the Home page.
-        $_SESSION['info'] = "You have dont access to create event.";
-        header('Location: index.php');
-        exit();  // Stop further execution of the script
-    }
-}
 
 // If the user is logged in as admin, continue
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
@@ -23,8 +13,8 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 <div class="container my-5 text-center">
     <?php include 'message.php' ?>
 
-    <div class="card w-50 mx-auto">
-        <div class="card-body">
+    <div class="card w-50 mx-auto shadow">
+        <div class="card-body mx-3">
             <h3 class="card-title py-3">Create New Event</h3>
             <form action="event_action.php" method="POST" class="">
                 <div class="col input-group my-3">
