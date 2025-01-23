@@ -60,16 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             unset($_SESSION['errors']);  // Clear the errors message after successfully registered
             unset($_SESSION['form_data']);  // Clear the form data after successfully registered
             header('Location: login_form.php');  // Redirect to the home page
-            $stmt->close();
-            $conn->close();
-            exit();
         } else {
             $errors['info'] = 'Something went wrong, Try again.';
             $_SESSION['errors'] = $errors;
             header('Location: register_form.php');
-            $stmt->close();
-            $conn->close();
-            exit();
         }
+        
+        $stmt->close();
+        $conn->close();
+        exit();
     }
 }
