@@ -26,13 +26,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 'admin') {
         header('Location: event_form.php');  // Redirect back to the form
         exit();
     }
-    
+
+    // Handle file upload
+    $cover_photo = null; // Default to null if no file is uploaded
+
+    if (isset($_FILES['cover_photo']) && $_FILES['cover_photo']['error'] == 0) {
+        $target_dir = "media/";
+        $cover_photo = $target_dir . basename($_FILES["cover_photo"]["name"]);
+
+        // Save the file to the server
+        if (!move_uploaded_file($_FILES["cover_photo"]["tmp_name"], $cover_photo)) {
+            die("Sorry, there was an error uploading your file.");
+        }
+    }
+    // echo '<pre>';
+    // print_r($_FILES);  // Display all session data
+    // print_r($cover_photo);
+    // echo '</pre>';
+
     // If no errors, proceed with the event logic
     include 'db_connect.php';
 
     // Insert the event into the database
-    $stmt = $conn->prepare("INSERT INTO events (title, date, max_capacity, description, created_by) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssii", $title, $date, $max_capacity, $description, $created_by);
+    $stmt = $conn->prepare("INSERT INTO events (title, date, max_capacity, description, cover_photo, created_by) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssissi", $title, $date, $max_capacity, $description, $cover_photo, $created_by);
 
     if ($stmt->execute()) {
         // Store success message in the session
@@ -50,4 +67,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 'admin') {
     $conn->close();
     exit();
 }
-?>

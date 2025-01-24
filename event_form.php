@@ -10,13 +10,13 @@ $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
 $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 ?>
 
-<div class="container my-5 text-center">
+<div>
     <?php include 'message.php' ?>
 
     <div class="card w-50 mx-auto shadow">
         <div class="card-body mx-3">
             <h3 class="card-title py-3">Create New Event</h3>
-            <form action="event_action.php" method="POST" class="">
+            <form action="event_action.php" method="POST" enctype="multipart/form-data">
                 <div class="col input-group my-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Event Title</span>
                     <input type="text" class="form-control" name="title" value="<?php echo isset($form_data['title']) ? htmlspecialchars($form_data['title']) : ''; ?>" required>
@@ -48,6 +48,10 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
                 <?php if (isset($errors['description'])): ?>
                     <span class="error text-danger"><?php echo $errors['description']; ?></span>
                 <?php endif; ?>
+                
+                <div class="col input-group my-3">
+                    <input type="file" class="form-control" name="cover_photo" accept="image/*" required>
+                </div>
 
                 <button type="submit" required class="btn btn-success col-3 my-3">Submit</button>
             </form>
