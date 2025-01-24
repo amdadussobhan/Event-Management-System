@@ -1,13 +1,13 @@
 <?php
-include 'verify_user.php';
+include '../auth/verify_user.php';
 $pageTitle = 'My Events | EMS';
 
 // Include the header & message
-include 'header.php';
-include 'message.php';
+include '../layout/header.php';
+include '../layout/message.php';
 
 // Fetch events from the database
-include 'db_connect.php';
+include '../auth/db_connect.php';
 $stmt = $conn->prepare("SELECT e.id, e.title, e.date, e.max_capacity FROM events as e INNER JOIN attendees as a ON e.id = a.event_id WHERE a.user_id = ? ORDER BY date ASC");
 $stmt->bind_param("i", $_SESSION['user_id']);
 $stmt->execute();
@@ -50,7 +50,7 @@ $stmt->close();
 $conn->close();
 
 // Include the footer
-include 'footer.php';
+include '../layout/footer.php';
 unset($_SESSION['info']);  // Clear the info message after displaying
 unset($_SESSION['errors']);  // Clear the error message after displaying
 unset($_SESSION['success']);  // Clear the success message after displaying

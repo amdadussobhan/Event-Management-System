@@ -3,11 +3,11 @@ session_start();
 $pageTitle = 'ALL Events | EMS';
 
 // Include the header
-include 'header.php';
-include 'message.php';
+include '../layout/header.php';
+include '../layout/message.php';
 
 // Fetch events from the database
-include 'db_connect.php';
+include '../auth/db_connect.php';
 $stmt = $conn->prepare("SELECT id, title, date, max_capacity, description FROM events ORDER BY date ASC");
 $stmt->execute();
 $result = $stmt->get_result();
@@ -76,7 +76,7 @@ $stmt->close();
 $conn->close();
 
 // Include the footer
-include 'footer.php';
+include '../layout/footer.php';
 unset($_SESSION['info']);  // Clear the info message after displaying
 unset($_SESSION['errors']);  // Clear the error message after displaying
 unset($_SESSION['success']);  // Clear the success message after displaying

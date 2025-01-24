@@ -1,9 +1,10 @@
 <?php
-include 'verify_admin.php';
+include '../auth/verify_admin.php';
 $pageTitle = 'Create Event | EMS';
 
 // Include the header
-include 'header.php';
+include '../layout/header.php';
+include '../layout/message.php';
 
 // If the user is logged in as admin, continue
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
@@ -11,8 +12,6 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 ?>
 
 <div>
-    <?php include 'message.php' ?>
-
     <div class="card w-50 mx-auto shadow">
         <div class="card-body mx-3">
             <h3 class="card-title py-3">Create New Event</h3>
@@ -62,7 +61,7 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 
 <!-- Include the footer -->
 <?php
-include 'footer.php';
+include '../layout/footer.php';
 
 unset($_SESSION['info']);  // Clear the info message after displaying
 unset($_SESSION['errors']);  // Clear the error message after displaying

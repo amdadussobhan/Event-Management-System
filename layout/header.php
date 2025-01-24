@@ -13,7 +13,7 @@
     <!-- Navbar -->
     <?php
     include 'navbar.php';
-    include 'db_connect.php';
+    include __DIR__.'/../auth/db_connect.php';
     ?>
 
     <div class="container mt-4 text-center" style="min-height: 720px;">

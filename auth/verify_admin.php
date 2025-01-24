@@ -5,11 +5,11 @@ session_start();  // Start the session
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['role'] != 'admin') {
         // If the user is not logged in as admin, redirect to the Home page.
-        header('Location: my_events.php');
+        header('Location: events/my_events.php');
         exit();  // Stop further execution of the script
     }
 }else{
-    header('Location: login_form.php');
+    header('Location: auth/login_form.php');
     exit();  // Stop further execution of the script
 }
 

@@ -3,14 +3,14 @@ session_start();
 $pageTitle = 'Event Details | EMS';
 
 // Include the header
-include 'header.php';
-include 'message.php';
+include '../layout/header.php';
+include '../layout/message.php';
 
 $event_id = $_GET['event_id'];
 $_SESSION['event_id'] = $event_id;
 
 // Fetch events from the database
-include 'db_connect.php';
+include '../auth/db_connect.php';
 $stmt = $conn->prepare("SELECT id, title, date, max_capacity, description, cover_photo FROM events WHERE id = ? ORDER BY date ASC");
 $stmt->bind_param("i", $event_id);
 $stmt->execute();
@@ -41,14 +41,14 @@ if ($stmt->num_rows > 0):
             <?php if (isset($_SESSION['registered'])): ?>
                 <a class='btn btn-success px-5' style='float: right;'> You already Registered </a>
             <?php else: ?>
-                <a href='register_form.php' class='btn btn-warning px-5' style='float: right;'> Register This Event </a>
+                <a href='../events/register_form.php' class='btn btn-warning px-5' style='float: right;'> Register This Event </a>
             <?php endif; ?>
         </div>
     <?php endif;
 
     // Display the cover photo if available
     if (!empty($cover_photo)): ?>
-        <img src='<?php echo htmlspecialchars($cover_photo) ?>' class='my-1 shadow-lg' alt='Cover Photo' style='height:333px; width:100%'>
+        <img src='<?php echo "/ems/".htmlspecialchars($cover_photo) ?>' class='my-1 shadow-lg' alt='Cover Photo' style='height:250px; width:100%'>
     <?php endif;
 
     if (!empty($description) and $description != ""): ?>
@@ -62,7 +62,7 @@ endif;
 $conn->close();
 
 // Include the footer
-include 'footer.php';
+include '../layout/footer.php';
 unset($_SESSION['registered']);  // Clear the info message after displaying
 unset($_SESSION['errors']);  // Clear the error message after displaying
 unset($_SESSION['info']);  // Clear the info message after displaying

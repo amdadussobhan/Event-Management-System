@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
             $_SESSION['role'] = $role;
-            header("Location: index.php");  // Redirect to the dashboard page
+            header("Location: /ems/index.php");  // Redirect to the dashboard page
             exit();
         } else {
             $errors['error'] = "Email or Password is not correct. Please try again.";

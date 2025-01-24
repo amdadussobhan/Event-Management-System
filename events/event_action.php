@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 'admin') {
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
         $_SESSION['form_data'] = $_POST;  // Store form data (except password)
-        header('Location: event_form.php');  // Redirect back to the form
+        header('Location: events/event_form.php');  // Redirect back to the form
         exit();
     }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 'admin') {
     $cover_photo = null; // Default to null if no file is uploaded
 
     if (isset($_FILES['cover_photo']) && $_FILES['cover_photo']['error'] == 0) {
-        $target_dir = "media/";
+        $target_dir = "../media/";
         $cover_photo = $target_dir . basename($_FILES["cover_photo"]["name"]);
 
         // Save the file to the server
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 'admin') {
     // echo '</pre>';
 
     // If no errors, proceed with the event logic
-    include 'db_connect.php';
+    include '../auth/db_connect.php';
 
     // Insert the event into the database
     $stmt = $conn->prepare("INSERT INTO events (title, date, max_capacity, description, cover_photo, created_by) VALUES (?, ?, ?, ?, ?, ?)");
