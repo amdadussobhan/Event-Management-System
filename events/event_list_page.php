@@ -1,13 +1,9 @@
 <?php
-session_start();
 $pageTitle = 'ALL Events | EMS';
 
 // Include the header
 include '../layout/header.php';
-include '../layout/message.php';
 
-// Fetch events from the database
-include '../auth/db_connect.php';
 $stmt = $conn->prepare("SELECT id, title, date, max_capacity, description FROM events ORDER BY date ASC");
 $stmt->execute();
 $result = $stmt->get_result();
@@ -16,7 +12,7 @@ if (isset($_SESSION['role'])):
     if ($_SESSION['role'] == "admin"): ?>
         <div>
             <h5 class="pb-3" style="float: left;">All Event List</h5>
-            <h5 class="pb-3" style="float: right;"><a href="event_form.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
+            <h5 class="pb-3" style="float: right;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
         </div>
     <?php else: ?>
         <div class="text-center">
@@ -33,6 +29,7 @@ if (isset($_SESSION['role'])):
     <table class="table table-striped table-bordered table-hover">
         <thead class="table-info">
             <tr>
+                <th>SL</th>
                 <th>Event Title</th>
                 <th>Date</th>
                 <th>Max Capacity</th>
@@ -41,27 +38,28 @@ if (isset($_SESSION['role'])):
             </tr>
         </thead>
         <tbody class="table-group-divider">
-            <?php while ($row = $result->fetch_assoc()): ?>
+            <?php $SL = 1; while ($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><a href="event_details.php?event_id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a></td>
+                    <td><?php echo $SL++; ?></td>
+                    <td><a href="event_details_page.php?event_id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a></td>
                     <td><?php echo $row['date']; ?></td>
                     <td><?php echo $row['max_capacity']; ?></td>
                     <td>00</td>
                     <?php if (isset($_SESSION['role'])): ?>
                         <?php if ($_SESSION['role'] == "admin"): ?>
                             <td>
-                                <a href="event_details.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2"><i class="fa-solid fa-eye"></i></a>
-                                <a href="event_edit.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-secondary"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="event_delete.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-danger"><i class="fa-solid fa-trash"></i></a>
+                                <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2"><i class="fa-solid fa-eye"></i></a>
+                                <a href="event_update_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-secondary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="event_delete_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-danger"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         <?php else: ?>
                             <td>
-                                <a href="event_details.php?event_id=<?php echo $row['id']; ?>" class="mx-2"><i class="fa-solid fa-eye pe-2"></i>view</a>
+                                <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="mx-2"><i class="fa-solid fa-eye pe-2"></i>view</a>
                             </td>
                         <?php endif; ?>
                     <?php else: ?>
                         <td>
-                            <a href="event_details.php?event_id=<?php echo $row['id']; ?>" class="mx-2"><i class="fa-solid fa-eye pe-2"></i>view</a>
+                            <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="mx-2"><i class="fa-solid fa-eye pe-2"></i>view</a>
                         </td>
                     <?php endif; ?>
                 </tr>

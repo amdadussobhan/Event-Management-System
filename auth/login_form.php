@@ -1,5 +1,4 @@
 <?php
-session_start();
 $pageTitle = 'Login | EMS';
 
 // Include header
@@ -8,32 +7,13 @@ include __DIR__.'/../layout/header.php';
 // Check if the user is logged in by verifying if 'user_id' is set
 if (isset($_SESSION['user_id'])) {
     // If the user is not logged in, redirect to the login page
-    $_SESSION['info'] = "You are already loged in!. Logout first if you want to login another account.";
+    $_SESSION['info'] = "You are already loged in. If you want to login another account, logout first.";
     header('Location: index.php');
     exit();  // Stop further execution of the script
 }
-
-// If the user is logged in, continue to the home page content
-$errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
-$form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 ?>
 
 <div>
-    <?php
-    // Displaying message if it exists    
-    if (isset($_SESSION['success'])) {
-        echo "<h4 class='text-success pb-4'>" . $_SESSION['success'] . "</h4>";
-    }
-
-    if (isset($_SESSION['info'])) {
-        echo "<h4 class='text-warning pb-4'>" . $_SESSION['info'] . "</h4>";
-    }
-
-    if (isset($errors['error'])) {
-        echo "<h4 class='text-danger pb-4'>" . $errors['error'] . "</h4>";
-    }
-    ?>
-
     <div class="card w-50 mx-auto shadow px-3">
         <div class="card-body">
             <h3 class="card-title py-3">Login to EMS</h3>

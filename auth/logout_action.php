@@ -1,7 +1,5 @@
 <?php
-session_start();  // Start the session
-
-// Unset all session variables
+session_start();  // Start the session to store error messages and form data
 $_SESSION = [];
 
 // Destroy the session

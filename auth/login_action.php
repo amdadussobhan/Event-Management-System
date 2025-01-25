@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start();  // Start the session to store error messages and form data
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];

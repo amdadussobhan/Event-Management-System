@@ -1,16 +1,14 @@
 <?php
-session_start();
 $pageTitle = 'Event Details | EMS';
 
 // Include the header
 include '../layout/header.php';
-include '../layout/message.php';
+include '../auth/isLogin.php';
+include '../auth/isAdmin.php';
 
 $event_id = $_GET['event_id'];
 $_SESSION['event_id'] = $event_id;
 
-// Fetch events from the database
-include '../auth/db_connect.php';
 $stmt = $conn->prepare("SELECT id, title, date, max_capacity, description, cover_photo FROM events WHERE id = ? ORDER BY date ASC");
 $stmt->bind_param("i", $event_id);
 $stmt->execute();
@@ -27,39 +25,38 @@ if ($stmt->num_rows > 0):
     $stmt->store_result();
     $stmt->bind_result($id);
     $stmt->fetch();
-
-    if ($stmt->num_rows > 0) {
-        $_SESSION['registered'] = True;
-        $stmt->close();
-    }
+    $conn->close();
 
     if (!empty($title)): ?>
-        <h4 class='py-1'> Title: <?php echo $title; ?> </h4>
-        <div class="overflow-hidden">
-            <h5 class='pe-5 pt-2' style='float: left;'> Date: <?php echo $date; ?></h5>
-            <h5 class='pt-2' style='float: left;'> Max Capacity: <?php echo $max_capacity; ?> Person</h5>
-            <?php if (isset($_SESSION['registered'])): ?>
-                <a class='btn btn-success px-5' style='float: right;'> You already Registered </a>
-            <?php else: ?>
-                <a href='../events/register_form.php' class='btn btn-warning px-5' style='float: right;'> Register This Event </a>
-            <?php endif; ?>
+        <div>
+            <h3 class="text-danger">Are you sure want to delete this Event ?</h3>
+            <br>
+            <a href="event_list_page.php" class="btn btn-primary px-5 me-5">No, Back</a>
+            <a href="event_delete_action.php?event_id=<?php echo $id; ?>" class="btn btn-danger px-5 ms-5">Yes, Delete</a>
+            <br>
+            <br>
+            <hr>
+            <hr>
+        </div>
+        <h4 class='text-start py-1 pb-0'> Title: <?php echo $title; ?> </h4>
+        <div class="overflow-hidden text-primary">
+            <h5 class='pe-5' style='float: left;'> Date: <?php echo $date; ?></h5>
+            <h5 style='float: left;'> Max Capacity: <?php echo $max_capacity; ?> Person</h5>
         </div>
     <?php endif;
 
     // Display the cover photo if available
     if (!empty($cover_photo)): ?>
-        <img src='<?php echo "/ems/".htmlspecialchars($cover_photo) ?>' class='my-1 shadow-lg' alt='Cover Photo' style='height:250px; width:100%'>
+        <img src='/ems/<?php echo htmlspecialchars($cover_photo) ?>' class='my-1 shadow-lg' alt='Cover Photo' style='height:250px; width:100%'>
     <?php endif;
-
     if (!empty($description) and $description != ""): ?>
         <p class='text-start py-2'>Description: <?php echo nl2br(htmlspecialchars($description)) ?></p>
 <?php endif;
 else:
-    $stmt->close();
     $errors['error'] = "Events not found. Please try again.";
+    header('Location: event_list_page.php');
+    exit();  // Stop further execution of the script
 endif;
-
-$conn->close();
 
 // Include the footer
 include '../layout/footer.php';
