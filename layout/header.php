@@ -20,7 +20,6 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 <body>
     <div class="container mt-4 text-center" style="min-height: 720px;">
         <?php
-
         // Displaying message if it exists    
         if (isset($_SESSION['success'])) {
             echo "<h4 class='text-success pb-4'>" . $_SESSION['success'] . "</h4>";

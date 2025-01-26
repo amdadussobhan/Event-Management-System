@@ -2,34 +2,6 @@
 $pageTitle = 'Update Profile | EMS';
 include '../layout/header.php'; // Include the header
 include '../auth/isLogin.php';
-
-// Query to get the total number of events
-$stmt = $conn->prepare("SELECT COUNT(*) AS total_events FROM events");
-$stmt->execute();
-$stmt->bind_result($total_events);
-$stmt->fetch();
-$stmt->close();
-
-// Query to get the total number of participants
-$stmt = $conn->prepare("SELECT COUNT(*) AS total_participants FROM attendees");
-$stmt->execute();
-$stmt->bind_result($total_participants);
-$stmt->fetch();
-$stmt->close();
-
-//Get all participants list
-$stmt = $conn->prepare("
-    SELECT u.name, u.email, e.title
-    FROM attendees as a
-    INNER JOIN users as u ON a.user_id = u.id
-    INNER JOIN events as e ON a.event_id = e.id
-    ORDER BY a.id DESC
-");
-
-$stmt->execute();
-$result = $stmt->get_result();
-$stmt->close();
-$conn->close();
 ?>
 
 <div>

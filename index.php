@@ -1,10 +1,6 @@
 <?php
 $pageTitle = 'Dashboard | EMS';
-
-// Include the header & message
-include 'layout/header.php';
-
-// Connect to your database
+include 'layout/header.php'; // Include the header
 include 'auth/isLogin.php';
 include 'auth/isAdmin.php';
 

@@ -46,14 +46,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         } else {
             $errors['error'] = "Email or Password is not correct. Please try again.";
+            header("Location: login_form.php");  // Redirect to the login page
         }
     } else {
         $stmt->close();
         $errors['error'] = "User not found!. Please Register first.";
+        header("Location: signup_form.php");  // Redirect to the signup page
     }
 
     $_SESSION['errors'] = $errors;
     $_SESSION['form_data'] = $_POST;  // Store form data (except password)
-    header("Location: login_form.php");  // Redirect to the login page
     exit();
 }

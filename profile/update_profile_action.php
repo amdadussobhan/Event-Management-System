@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Hash the password securely
         $password_hash = password_hash($password1, PASSWORD_BCRYPT);
 
-        // Insert the user into the database
+        // Update the user into the database
         $stmt = $conn->prepare("UPDATE users SET name = ?, email = ?, password_hash = ? WHERE id = ?");
         $stmt->bind_param("sssi", $name, $email, $password_hash, $_SESSION['user_id']);
 

@@ -1,21 +1,19 @@
 <?php
 session_start();
 
-include '../auth/db_connect.php'; // Include database connection
-
 // Check if the event ID is provided
 if (isset($_GET['event_id']) && $_SESSION['role'] == 'admin') {
-    $event_id = $_GET['event_id'];
+    include '../auth/db_connect.php'; // Include database connection
 
     // First, delete attendees associated with this event (if necessary)
     $stmt = $conn->prepare("DELETE FROM attendees WHERE event_id = ?");
-    $stmt->bind_param("i", $event_id);
+    $stmt->bind_param("i", $_GET['event_id']);
     $stmt->execute();
     $stmt->close();
 
     // Now, delete the event from the events table
     $stmt = $conn->prepare("DELETE FROM events WHERE id = ?");
-    $stmt->bind_param("i", $event_id);
+    $stmt->bind_param("i", $_GET['event_id']);
 
     if ($stmt->execute()) {
         // If the event is successfully deleted, redirect with a success message

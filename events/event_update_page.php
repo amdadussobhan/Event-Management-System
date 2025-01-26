@@ -9,20 +9,19 @@ include '../auth/isAdmin.php';
 // If the user is logged in as admin, continue
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
 $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
-$event_id = $_GET['event_id'];
 
-$stmt = $conn->prepare("SELECT id, title, date, max_capacity, description, cover_photo FROM events WHERE id = ? ORDER BY date ASC");
-$stmt->bind_param("i", $event_id);
+$stmt = $conn->prepare("SELECT id, title, date, max_capacity, description, cover_photo FROM events WHERE id = ?");
+$stmt->bind_param("i", $_GET['event_id']);
 $stmt->execute();
 $stmt->store_result();
 $stmt->bind_result($id, $title, $date, $max_capacity, $description, $cover_photo);
 $stmt->fetch();
+$conn->close();
 
 $_SESSION['cover_photo'] = $cover_photo;
 
 if ($stmt->num_rows > 0):
     $stmt->close();
-    $conn->close();
 ?>
     <div>
         <div class="card w-50 mx-auto shadow">
@@ -80,7 +79,7 @@ if ($stmt->num_rows > 0):
                     </div>
 
                     <!-- Hidden input for the event ID and ex_cover_photo -->
-                    <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event_id); ?>">
+                    <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($_GET['event_id']); ?>">
                     <input type="hidden" name="ex_cover_photo" value="<?php echo htmlspecialchars($cover_photo); ?>">
 
                     <button type="submit" required class="btn btn-success col-3 my-3">Update</button>
@@ -93,7 +92,6 @@ else:
     $errors['error'] = "Events not found. Something went wrong. Please try again.";
     header('Location: event_list_page.php');
     $stmt->close();
-    $conn->close();
     exit();  // Stop further execution of the script
 endif;
 

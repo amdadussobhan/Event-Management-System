@@ -38,7 +38,8 @@ if (isset($_SESSION['role'])):
             </tr>
         </thead>
         <tbody class="table-group-divider">
-            <?php $SL = 1; while ($row = $result->fetch_assoc()): ?>
+            <?php $SL = 1;
+            while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo $SL++; ?></td>
                     <td><a href="event_details_page.php?event_id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a></td>
@@ -50,7 +51,7 @@ if (isset($_SESSION['role'])):
                             <td>
                                 <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2"><i class="fa-solid fa-eye"></i></a>
                                 <a href="event_update_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-secondary"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="event_delete_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="event_delete_action.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-danger" onclick="return confirm('Are you sure you want to delete this Event.?');"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         <?php else: ?>
                             <td>

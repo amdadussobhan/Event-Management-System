@@ -31,8 +31,12 @@
             <ul class="navbar-nav ms-auto">
                 <?php if (isset($_SESSION['role'])):
                     if ($_SESSION['role'] == "admin"): ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/ems/profile/update_profile_page.php"><b><?php echo $_SESSION['name']; ?></b><i class="fa-solid fa-user ms-2"></i></a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><b><?php echo $_SESSION['name']; ?></b><i class="fa-solid fa-user ms-2"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/ems/profile/update_profile_page.php">My Profile</a></li>
+                                <li><a class="dropdown-item" href="/ems/profile/userprofile_list_page.php">Users List</a></li>
+                            </ul>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
