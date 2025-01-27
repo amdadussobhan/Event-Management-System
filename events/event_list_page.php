@@ -8,17 +8,11 @@ $stmt = $conn->prepare("SELECT id, title, date, max_capacity, description FROM e
 $stmt->execute();
 $result = $stmt->get_result();
 
-if (isset($_SESSION['role'])):
-    if ($_SESSION['role'] == "admin"): ?>
-        <div>
-            <h5 class="pb-3" style="float: left;">All Event List</h5>
-            <h5 class="pb-3" style="float: right;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
-        </div>
-    <?php else: ?>
-        <div class="text-center">
-            <h4 class="pb-3">All Event List</h4>
-        </div>
-    <?php endif; ?>
+if (isset($_SESSION['role'])): ?>
+    <div>
+        <h5 class="pb-3" style="float: left;">All Event List</h5>
+        <h5 class="pb-3" style="float: right;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
+    </div>
 <?php else: ?>
     <div class="text-center">
         <h4 class="pb-3">All Event List</h4>
@@ -26,7 +20,7 @@ if (isset($_SESSION['role'])):
 <?php endif; ?>
 
 <div class="text-center">
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover text-center">
         <thead class="table-info">
             <tr>
                 <th>SL</th>
@@ -47,17 +41,11 @@ if (isset($_SESSION['role'])):
                     <td><?php echo $row['max_capacity']; ?></td>
                     <td>00</td>
                     <?php if (isset($_SESSION['role'])): ?>
-                        <?php if ($_SESSION['role'] == "admin"): ?>
-                            <td>
-                                <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2"><i class="fa-solid fa-eye"></i></a>
-                                <a href="event_update_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-secondary"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="event_delete_action.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-danger" onclick="return confirm('Are you sure you want to delete this Event.?');"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        <?php else: ?>
-                            <td>
-                                <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="mx-2"><i class="fa-solid fa-eye pe-2"></i>view</a>
-                            </td>
-                        <?php endif; ?>
+                        <td>
+                            <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2"><i class="fa-solid fa-eye"></i></a>
+                            <a href="event_update_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-secondary"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="event_delete_action.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-danger" onclick="return confirm('Are you sure you want to delete this Event.?');"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
                     <?php else: ?>
                         <td>
                             <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="mx-2"><i class="fa-solid fa-eye pe-2"></i>view</a>

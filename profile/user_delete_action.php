@@ -1,8 +1,10 @@
 <?php
 session_start();
+include '../auth/isLogin.php';
+include '../auth/isAdmin.php';
 
 // Check if the user ID is provided
-if (isset($_GET['user_id']) && $_SESSION['role'] == 'admin') {
+if (isset($_GET['user_id'])) {
     // First, delete attendees associated with this event (if necessary)
     include '../auth/db_connect.php'; // Include database connection
     $stmt = $conn->prepare("DELETE FROM attendees WHERE user_id = ?");

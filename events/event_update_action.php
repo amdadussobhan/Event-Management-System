@@ -1,7 +1,8 @@
 <?php
 session_start();
+include '../auth/isLogin.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] == 'admin') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = $_POST['title'];
     $date = $_POST['date'];
     $max_capacity = $_POST['max_capacity'];

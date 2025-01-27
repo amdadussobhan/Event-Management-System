@@ -1,10 +1,9 @@
 <?php
-$pageTitle = 'Create Event | EMS';
+$pageTitle = 'Update Event | EMS';
 
 // Include the header
 include '../layout/header.php';
 include '../auth/isLogin.php';
-include '../auth/isAdmin.php';
 
 // If the user is logged in as admin, continue
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];

@@ -59,7 +59,7 @@ $conn->close();
 </div>
 
 <div class="text-center">
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover text-center">
         <thead class="table-info">
             <tr>
                 <th>SL</th>

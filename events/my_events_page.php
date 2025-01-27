@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 </div>
 
 <div class="text-center">
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover text-center">
         <thead class="table-info">
             <tr>                
                 <th>SL</th>
@@ -36,7 +36,8 @@ $result = $stmt->get_result();
                     <td><?php echo $row['max_capacity']; ?></td>
                     <td>00</td>
                     <td>
-                        <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="mx-2 px-5"><i class="fa-solid fa-eye pe-2"></i>view</a>
+                        <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="me-3 text-decoration-none"><i class="fa-solid fa-eye pe-2"></i>view</a>
+                        <a href="event_cancel_action.php?event_id=<?php echo $row['id']; ?>" class="text-danger text-decoration-none"><i class="fa-solid fa-xmark pe-2"></i>cancel</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

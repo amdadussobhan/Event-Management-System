@@ -1,5 +1,7 @@
 <?php
 session_start();  // Start the session to store error messages and form data
+include '../auth/isLogin.php';
+include '../auth/isAdmin.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];

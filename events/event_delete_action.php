@@ -1,8 +1,9 @@
 <?php
 session_start();
+include '../auth/isLogin.php';
 
 // Check if the event ID is provided
-if (isset($_GET['event_id']) && $_SESSION['role'] == 'admin') {
+if (isset($_GET['event_id'])) {
     include '../auth/db_connect.php'; // Include database connection
 
     // First, delete attendees associated with this event (if necessary)
