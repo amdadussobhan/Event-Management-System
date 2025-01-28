@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($cover_photo))
-        $errors['cover_photo'] = 'Cover Photo field is required.';
+        $errors['cover_photo'] = 'Cover Photo is required. Try to upload small size photo.';
 
     // If there are validation errors, store them in the session and redirect back
     if (!empty($errors)) {

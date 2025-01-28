@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'navbar.php';
-include __DIR__.'/../auth/db_connect.php';
+include __DIR__ . '/../auth/db_connect.php';
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
 $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 ?>
@@ -18,18 +18,14 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 </head>
 
 <body>
-    <div class="container mt-4 text-center" style="min-height: 720px;">
-        <?php
-        // Displaying message if it exists    
-        if (isset($_SESSION['success'])) {
-            echo "<h4 class='text-success pb-4'>" . $_SESSION['success'] . "</h4>";
-        }
+    <div class="container mt-3 text-center" style="min-height: 727px;">
+        <?php // Displaying message if it exists
+        if (isset($_SESSION['success']))
+            echo "<h4 id='success' class='text-success pb-4'>" . $_SESSION['success'] . "</h4>";
 
-        if (isset($_SESSION['info'])) {
-            echo "<h4 class='text-warning pb-4'>" . $_SESSION['info'] . "</h4>";
-        }
+        if (isset($_SESSION['info']))
+            echo "<h4 id='info' class='text-warning pb-4'>" . $_SESSION['info'] . "</h4>";
 
-        if (isset($errors['error'])) {
-            echo "<h4 class='text-danger pb-4'>" . $errors['error'] . "</h4>";
-        }
+        if (isset($errors['error']))
+            echo "<h4 id='error' class='text-danger pb-4'>" . $errors['error'] . "</h4>";
         ?>

@@ -12,7 +12,7 @@ $result = $stmt->get_result();
 ?>
 
 <div class="text-center">
-    <h4 class="pb-3">My Event List</h4>
+    <h4 class="pb-3">My Registered Event List</h4>
 </div>
 
 <div class="text-center">
@@ -20,7 +20,7 @@ $result = $stmt->get_result();
         <thead class="table-info">
             <tr>                
                 <th>SL</th>
-                <th>Event Title</th>
+                <th>Title</th>
                 <th>Date</th>
                 <th>Max Capacity</th>
                 <th>Participants</th>

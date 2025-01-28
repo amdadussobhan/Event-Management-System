@@ -50,6 +50,9 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
                 <div class="col input-group my-3">
                     <input type="file" class="form-control" name="cover_photo" accept="image/*" required>
                 </div>
+                <?php if (isset($errors['cover_photo'])): ?>
+                    <span class="error text-danger"><?php echo $errors['cover_photo']; ?></span>
+                <?php endif; ?>
 
                 <button type="submit" required class="btn btn-success col-3 my-3">Create</button>
             </form>
