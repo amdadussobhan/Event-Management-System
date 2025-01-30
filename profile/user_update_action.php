@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validation checks
     if (empty($name))
-        $errors['name'] = 'Name fields is required.';
+        $errors['name'] = 'Name field is required.';
     if (empty($email))
-        $errors['email'] = 'Email fields is required.';
+        $errors['email'] = 'Email field is required.';
     if (empty($role))
-        $errors['role'] = 'Role fields is required.';
+        $errors['role'] = 'Role field is required.';
 
     // If no errors, proceed with the registration logic
     include '../auth/db_connect.php';

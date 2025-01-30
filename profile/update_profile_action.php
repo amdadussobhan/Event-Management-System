@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validation checks
     if (empty($name))
-        $errors['name'] = 'Name fields is required.';
+        $errors['name'] = 'Name field is required.';
     if (empty($email))
-        $errors['email'] = 'Email fields is required.';
+        $errors['email'] = 'Email field is required.';
     
     if (empty($password1) || empty($password2))
         $errors['password'] = 'Both password fields are required.';

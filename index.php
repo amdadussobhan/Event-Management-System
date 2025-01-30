@@ -20,10 +20,10 @@ $stmt->close();
 
 //Get all participants list
 $stmt = $conn->prepare("
-    SELECT u.name, u.email, e.title
+    SELECT a.*, u.name, u.email, e.title
     FROM attendees as a
-    INNER JOIN users as u ON a.user_id = u.id
-    INNER JOIN events as e ON a.event_id = e.id
+    JOIN users as u ON a.user_id = u.id
+    JOIN events as e ON a.event_id = e.id
     ORDER BY a.id DESC
 ");
 
@@ -38,7 +38,7 @@ $conn->close();
         <div class="card w-50 ms-5 shadow">
             <div class="card-body">
                 <h4 class="card-title">Total Participant</h4>
-                <h4 class="card-title"><a href="" class="text-decoration-none"><i class="fa-solid fa-user me-3"></i><?php echo $total_participants; ?></a></h4>
+                <h4 class="card-title"><a href="" class="text-decoration-none"><i class="fa-solid fa-user me-3"></i><?php echo $result->num_rows; ?></a></h4>
             </div>
         </div>
     </div>

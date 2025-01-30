@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: /ems/index.php");  // Redirect to the dashboard page
             exit();
         } else {
-            $errors['error'] = "Email or Password is not correct. Please try again.";
+            $errors['error'] = "Email or password is not correct. Please try again.";
             header("Location: login_form.php");  // Redirect to the login page
         }
     } else {
