@@ -53,7 +53,7 @@ if ($stmt->num_rows > 0):
 
                     <div class="col input-group my-3">
                         <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-                        <textarea rows="4" class="form-control" name="description" required> <?php echo isset($form_data['description']) ? htmlspecialchars($form_data['description']) : (!empty($description) ? htmlspecialchars($description) : ''); ?> </textarea>
+                        <textarea rows="6" class="form-control" name="description" required> <?php echo isset($form_data['description']) ? htmlspecialchars($form_data['description']) : (!empty($description) ? htmlspecialchars($description) : ''); ?> </textarea>
                     </div>
                     <?php if (isset($errors['description'])): ?>
                         <span class="error text-danger"><?php echo $errors['description']; ?></span>

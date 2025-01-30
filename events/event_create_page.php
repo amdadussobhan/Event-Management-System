@@ -41,7 +41,7 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 
                 <div class="col input-group my-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-                    <textarea rows="4" class="form-control" name="description" required> <?php isset($form_data['description']) ? htmlspecialchars($form_data['description']) : ''; ?> </textarea>
+                    <textarea rows="6" class="form-control" name="description" required> <?php isset($form_data['description']) ? htmlspecialchars($form_data['description']) : ''; ?> </textarea>
                 </div>
                 <?php if (isset($errors['description'])): ?>
                     <span class="error text-danger"><?php echo $errors['description']; ?></span>

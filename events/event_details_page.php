@@ -86,7 +86,7 @@ include '../layout/header.php';
 
                     // Handle registration button
                     if (event.registered) {
-                        $('#register').text('Registered Successfully').addClass('btn-success').prop('disabled', true);
+                        $('#register').text('Already Registered').addClass('btn-success').prop('disabled', true);
                     } else if (event.participants >= event.max_capacity) {
                         $('#register').text('Capacity Reached').addClass('btn-info').prop('disabled', true);
                     } else {

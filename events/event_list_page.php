@@ -15,38 +15,33 @@ $order = isset($_GET['order']) && $_GET['order'] === 'desc' ? 'DESC' : 'ASC';
 $filter_title = isset($_GET['filter_title']) ? $_GET['filter_title'] : '';
 
 // Prepare SQL query with filtering, sorting, and pagination
-$sql = "SELECT id, title, date, max_capacity, description FROM events 
-        WHERE title LIKE ? 
-        ORDER BY $sort_by $order 
-        LIMIT ? OFFSET ?";
+$sql = "
+    SELECT e.id, e.title, e.date, e.max_capacity, COUNT(a.user_id) as participants
+    FROM events as e
+    LEFT JOIN attendees as a on e.id = a.event_id        
+    WHERE title LIKE ?
+    GROUP BY e.id
+    ORDER BY $sort_by $order
+    LIMIT ? OFFSET ?
+";
 
 $stmt = $conn->prepare($sql);
 $search_term = '%' . $filter_title . '%';
 $stmt->bind_param('sii', $search_term, $limit, $offset);
 $stmt->execute();
 $result = $stmt->get_result();
+$stmt->close();
 
 // Count total number of events for pagination
-$total_stmt = $conn->prepare("SELECT COUNT(*) FROM events WHERE title LIKE ?");
-$total_stmt->bind_param('s', $search_term);
-$total_stmt->execute();
-$total_stmt->bind_result($total_events);
-$total_stmt->fetch();
-$total_stmt->close();
+$stmt = $conn->prepare("SELECT COUNT(*) FROM events WHERE title LIKE ?");
+$stmt->bind_param('s', $search_term);
+$stmt->execute();
+$stmt->bind_result($total_events);
+$stmt->fetch();
+$stmt->close();
+$conn->close();
 
 $total_pages = ceil($total_events / $limit); ?>
-<div class="row">
-    <?php if (isset($_SESSION['role'])): ?>
-        <div class="col">
-            <h5 style="float: left;">All Event List</h5>
-            <h5 style="float: right;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
-        </div>
-    <?php else: ?>
-        <div class="text-center">
-            <h4 class="pb-3">All Active Event List</h4>
-        </div>
-    <?php endif; ?>
-</div>
 
 <div class="row justify-content-center">
     <div class="col-8">
@@ -57,6 +52,20 @@ $total_pages = ceil($total_events / $limit); ?>
         </form>
     </div>
 </div>
+<div class="row">
+    <?php if (isset($_SESSION['role'])): ?>
+        <div class="col">
+            <h5 style="float: left;">All Event List</h5>
+            <h5 style="float: left;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2 ps-4"></i>Create New</a></h5>
+            <h5 style="float: right;"><a href="../profile/userall_download_action.php" class="text-decoration-none pe-2"><i class="fa-solid fa-download pe-2"></i>Download All Participants</a></h5>
+        </div>
+    <?php else: ?>
+        <div class="text-center">
+            <h4 class="pb-3">All Active Event List</h4>
+        </div>
+    <?php endif; ?>
+</div>
+
 
 <!-- Event Table with Sorting -->
 <div class="text-center">
@@ -68,6 +77,11 @@ $total_pages = ceil($total_events / $limit); ?>
                 <th><a class="text-decoration-none" href="?sort_by=date&order=<?php echo $order === 'ASC' ? 'desc' : 'asc'; ?>">Date<i class="fa-solid fa-sort ps-2"></i></a></th>
                 <th>Max Capacity</th>
                 <th>Participants</th>
+                <?php if (isset($_SESSION['role'])):
+                    if ($_SESSION['role'] == "admin"): ?>
+                        <th>Download</th>
+                    <?php endif; ?>
+                <?php endif; ?>
                 <th>Action</th>
             </tr>
         </thead>
@@ -79,8 +93,11 @@ $total_pages = ceil($total_events / $limit); ?>
                     <td><a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="text-decoration-none"><?php echo htmlspecialchars($row['title']); ?></a></td>
                     <td><?php echo htmlspecialchars($row['date']); ?></td>
                     <td><?php echo htmlspecialchars($row['max_capacity']); ?></td>
-                    <td>00</td>
-                    <?php if (isset($_SESSION['role'])): ?>
+                    <td><?php echo htmlspecialchars($row['participants']); ?></td>
+                    <?php if (isset($_SESSION['role'])):
+                        if ($_SESSION['role'] == "admin"): ?>
+                            <td><a href="../profile/userone_download_action.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2"><i class="fa-solid fa-download"></i></a></td>
+                        <?php endif; ?>
                         <td>
                             <a href="event_details_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2"><i class="fa-solid fa-eye"></i></a>
                             <a href="event_update_page.php?event_id=<?php echo $row['id']; ?>" class="px-2 mx-2 text-secondary"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -120,11 +137,7 @@ $total_pages = ceil($total_events / $limit); ?>
     </ul>
 </nav>
 
-<!-- Include the footer -->
 <?php
-$stmt->close();
-$conn->close();
-
 // Include the footer
 include '../layout/footer.php';
 unset($_SESSION['info']);  // Clear the info message after displaying

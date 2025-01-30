@@ -20,10 +20,10 @@ $stmt->close();
 
 //Get all participants list
 $stmt = $conn->prepare("
-    SELECT a.*, u.name, u.email, e.title
+    SELECT u.name, u.email, e.title, e.max_capacity, e.date
     FROM attendees as a
-    JOIN users as u ON a.user_id = u.id
-    JOIN events as e ON a.event_id = e.id
+    LEFT JOIN users as u ON a.user_id = u.id
+    LEFT JOIN events as e ON a.event_id = e.id
     ORDER BY a.id DESC
 ");
 
@@ -54,8 +54,8 @@ $conn->close();
 </div>
 
 <div>
-    <h5 class="pb-3" style="float: left;">Recent Participants</h5>
-    <h5 class="pb-3" style="float: right;"><a href="events/event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
+    <h5 style="float: left;">Recent Participants</h5>
+    <h5 style="float: right;"><a href="events/event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
 </div>
 
 <div class="text-center">
@@ -66,6 +66,8 @@ $conn->close();
                 <th>Participants Name</th>
                 <th>Email Address</th>
                 <th>Event Title</th>
+                <th>Event Date</th>
+                <th>Max Capacity</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -75,6 +77,8 @@ $conn->close();
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['title']; ?></td>
+                    <td><?php echo $row['date']; ?></td>
+                    <td><?php echo $row['max_capacity']; ?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
