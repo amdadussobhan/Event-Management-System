@@ -26,7 +26,7 @@
                 </li>
             </ul>
 
-            <h2 class="ms-auto">Event Management System</h2>
+            <h2 id="navbar_heading" class="ms-auto">Event Management System</h2>
 
             <ul class="navbar-nav ms-auto">
                 <?php if (isset($_SESSION['role'])):
@@ -47,7 +47,7 @@
                         <a class="nav-link" href="/ems/auth/logout_action.php"><b>Logout</b><i class="fa-solid fa-power-off ms-2"></i></a>
                     </li>
                 <?php else: ?>
-                    <li class="nav-item d-flex ms-4">
+                    <li id="login_button" class="nav-item d-flex ms-4">
                         <a class="nav-link mx-2" href="/ems/auth/login_form.php"><b><i class="fa-solid fa-right-to-bracket pe-2"></i>Login</b></a>
                     </li>
 

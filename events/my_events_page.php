@@ -44,11 +44,11 @@ $stmt->close();
 $total_pages = ceil($total_events / $limit); ?>
 <div class="row">
     <div class="text-center">
-        <h4 class="pb-3">My Registered Event List</h4>
+        <h4 class="pb-2">My Registered Event List</h4>
     </div>
 </div>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center pb-2">
     <div class="col-8">
         <!-- Filter Form -->
         <form method="GET" class="d-flex">

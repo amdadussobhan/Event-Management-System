@@ -5,7 +5,7 @@ include '../auth/isLogin.php';
 ?>
 
 <div>
-    <div class="card w-50 mx-auto shadow px-3">
+    <div id="profile_update" class="card w-50 mx-auto shadow px-3">
         <div class="card-body">
             <h3 class="card-title py-3">My Profile</h3>
             <form action="update_profile_action.php" method="POST" class="">

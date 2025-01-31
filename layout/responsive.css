@@ -1,0 +1,36 @@
+#main_div {
+    min-height: 80vh;
+}
+
+@media all and (max-width:1095px) {
+    #navbar_heading {
+        display: none;
+    }
+
+    #login_button {
+        margin-left: 0px !important;
+    }
+
+    #login_card , #signup_card, #profile_update{
+        width: 80% !important;
+    }
+
+    #card_heading{
+        font-size: 1rem;
+    }
+
+    #counter_card{
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
+}
+
+@media all and (max-width:820px) {
+    #navbar_heading {
+        display: none;
+    }
+
+    #login_button {
+        margin-left: 0px !important;
+    }
+}

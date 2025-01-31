@@ -43,7 +43,7 @@ $conn->close();
 
 $total_pages = ceil($total_events / $limit); ?>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center mb-2">
     <div class="col-8">
         <!-- Filter Form -->
         <form method="GET" class="d-flex">
@@ -52,16 +52,24 @@ $total_pages = ceil($total_events / $limit); ?>
         </form>
     </div>
 </div>
+
 <div class="row">
-    <?php if (isset($_SESSION['role'])): ?>
-        <div class="col">
-            <h5 style="float: left;">All Event List</h5>
-            <h5 style="float: left;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2 ps-4"></i>Create New</a></h5>
-            <h5 style="float: right;"><a href="../profile/userall_download_action.php" class="text-decoration-none pe-2"><i class="fa-solid fa-download pe-2"></i>Download All Participants</a></h5>
-        </div>
-    <?php else: ?>
+    <?php if (isset($_SESSION['role'])):
+        if ($_SESSION['role'] == "admin"): ?>
+            <div class="col">
+                <h5 style="float: left;">All Event List</h5>
+                <h5 style="float: left;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2 ps-4"></i>Create New</a></h5>
+                <h5 style="float: right;"><a href="../profile/userall_download_action.php" class="text-decoration-none pe-2"><i class="fa-solid fa-download pe-2"></i>Download All Participants</a></h5>
+            </div>
+        <?php else: ?>
+            <div class="col">
+                <h5 style="float: left;">All Event List</h5>
+                <h5 style="float: right;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2 ps-4"></i>Create New</a></h5>
+            </div>
+        <?php endif;
+    else: ?>
         <div class="text-center">
-            <h4 class="pb-3">All Active Event List</h4>
+            <h4>All Active Event List</h4>
         </div>
     <?php endif; ?>
 </div>

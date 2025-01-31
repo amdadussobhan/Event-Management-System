@@ -33,11 +33,11 @@ $stmt->close();
 $conn->close();
 ?>
 
-<div class="row ms-5 ps-5">
+<div id="counter_card" class="row ms-5 ps-5 mb-2">
     <div class="col ms-5 ps-5">
         <div class="card w-50 ms-5 shadow">
             <div class="card-body">
-                <h4 class="card-title">Total Participant</h4>
+                <h4 id="card_heading" class="card-title">Participants</h4>
                 <h4 class="card-title"><a href="" class="text-decoration-none"><i class="fa-solid fa-user me-3"></i><?php echo $result->num_rows; ?></a></h4>
             </div>
         </div>
@@ -46,7 +46,7 @@ $conn->close();
     <div class="col">
         <div class="card w-50 shadow">
             <div class="card-body">
-                <h4 class="card-title">Total Events</h4>
+                <h4 id="card_heading" class="card-title">Total_Events</h4>
                 <h4 class="card-title"><a href="events/event_list_page.php" class="text-decoration-none"><i class="fa-solid fa-calendar-days me-3"></i><?php echo $total_events; ?></a></h4>
             </div>
         </div>

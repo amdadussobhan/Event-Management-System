@@ -18,7 +18,7 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 ?>
 
 <div>
-    <div class="card w-50 mx-auto shadow px-3">
+    <div id="signup_card" class="card w-50 mx-auto shadow px-3">
         <div class="card-body">
             <h3 class="card-title py-3">Complete Your Sign up</h3>
             <form action="signup_action.php" method="POST" class="">

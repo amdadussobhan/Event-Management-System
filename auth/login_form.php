@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
 ?>
 
 <div>
-    <div class="card w-50 mx-auto shadow px-3">
+    <div id="login_card" class="card w-50 mx-auto shadow px-3">
         <div class="card-body">
             <h3 class="card-title py-3">Login to EMS</h3>
             <form action="login_action.php" method="POST" class="">
