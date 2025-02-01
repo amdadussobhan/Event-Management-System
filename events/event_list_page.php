@@ -48,7 +48,7 @@ $total_pages = ceil($total_events / $limit); ?>
         <!-- Filter Form -->
         <form method="GET" class="d-flex">
             <input type="text" name="filter_title" class="form-control me-2" placeholder="Search by Title" value="<?php echo htmlspecialchars($filter_title); ?>">
-            <button type="submit" class="btn btn-warning px-5">Search</button>
+            <button id="event_search_button" type="submit" class="btn btn-warning px-5">Search</button>
         </form>
     </div>
 </div>
@@ -57,27 +57,27 @@ $total_pages = ceil($total_events / $limit); ?>
     <?php if (isset($_SESSION['role'])):
         if ($_SESSION['role'] == "admin"): ?>
             <div class="col">
-                <h5 style="float: left;">All Event List</h5>
-                <h5 style="float: left;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2 ps-4"></i>Create New</a></h5>
-                <h5 style="float: right;"><a href="../profile/userall_download_action.php" class="text-decoration-none pe-2"><i class="fa-solid fa-download pe-2"></i>Download All Participants</a></h5>
+                <h5 id="heading_font" style="float: left;">All Event List</h5>
+                <h5 id="heading_font" style="float: left;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2 ps-4"></i>Create New</a></h5>
+                <h5 id="heading_font" style="float: right;"><a href="../profile/userall_download_action.php" class="text-decoration-none pe-2"><i class="fa-solid fa-download pe-2"></i>Download All Participants</a></h5>
             </div>
         <?php else: ?>
             <div class="col">
-                <h5 style="float: left;">All Event List</h5>
-                <h5 style="float: right;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2 ps-4"></i>Create New</a></h5>
+                <h5 id="heading_font" style="float: left;">All Event List</h5>
+                <h5 id="heading_font" style="float: right;"><a href="event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2 ps-4"></i>Create New</a></h5>
             </div>
         <?php endif;
     else: ?>
         <div class="text-center">
-            <h4>All Active Event List</h4>
+            <h4 id="heading_font">All Active Event List</h4>
         </div>
     <?php endif; ?>
 </div>
 
 
 <!-- Event Table with Sorting -->
-<div class="text-center">
-    <table class="table table-striped table-bordered table-hover text-center">
+<div id="table_size" class="text-center">
+    <table id="table_font" class="table table-striped table-bordered table-hover text-center">
         <thead class="table-info">
             <tr>
                 <th>SL</th>

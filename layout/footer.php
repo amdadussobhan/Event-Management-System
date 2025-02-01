@@ -1,6 +1,6 @@
 </div>
 <footer class="bg-light text-center text-lg-start mt-5">
-    <div class="text-center p-3 bg-dark text-white">
+    <div id="footer_heading" class="text-center p-3 bg-dark text-white">
         Copyright &copy; <?php echo date("Y"); ?> AMDADUS SOBHAN. All rights reserved.
     </div>
 </footer>

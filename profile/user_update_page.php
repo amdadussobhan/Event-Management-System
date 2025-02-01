@@ -20,7 +20,7 @@ if ($stmt->num_rows > 0):
     $stmt->close();
 ?>
     <div>
-        <div class="card w-50 mx-auto shadow">
+        <div id="login_card" class="card w-50 mx-auto shadow">
             <div class="card-body mx-3">
                 <h3 class="card-title py-3">Update User Profile</h3>
                 <form action="user_update_action.php" method="POST" enctype="multipart/form-data">

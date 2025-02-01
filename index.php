@@ -33,9 +33,9 @@ $stmt->close();
 $conn->close();
 ?>
 
-<div id="counter_card" class="row ms-5 ps-5 mb-2">
-    <div class="col ms-5 ps-5">
-        <div class="card w-50 ms-5 shadow">
+<div id="counter_row" class="row ms-5 ps-5 mb-2">
+    <div id="counter_col" class="col ms-5 ps-5">
+        <div class="card w-50 ms-5 shadow counter_card">
             <div class="card-body">
                 <h4 id="card_heading" class="card-title">Participants</h4>
                 <h4 class="card-title"><a href="" class="text-decoration-none"><i class="fa-solid fa-user me-3"></i><?php echo $result->num_rows; ?></a></h4>
@@ -44,7 +44,7 @@ $conn->close();
     </div>
 
     <div class="col">
-        <div class="card w-50 shadow">
+        <div class="card w-50 shadow counter_card">
             <div class="card-body">
                 <h4 id="card_heading" class="card-title">Total_Events</h4>
                 <h4 class="card-title"><a href="events/event_list_page.php" class="text-decoration-none"><i class="fa-solid fa-calendar-days me-3"></i><?php echo $total_events; ?></a></h4>
@@ -54,12 +54,12 @@ $conn->close();
 </div>
 
 <div>
-    <h5 style="float: left;">Recent Participants</h5>
-    <h5 style="float: right;"><a href="events/event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
+    <h5 id="heading_font" style="float: left;">Recent Participants</h5>
+    <h5 id="heading_font" style="float: right;"><a href="events/event_create_page.php" class="text-decoration-none pe-2"><i class="fa-solid fa-plus pe-2"></i>Create New Event</a></h5>
 </div>
 
-<div class="text-center">
-    <table class="table table-striped table-bordered table-hover text-center">
+<div id="table_size" class="text-center">
+    <table id="table_font" class="table table-striped table-bordered table-hover text-center">
         <thead class="table-info">
             <tr>
                 <th>SL</th>

@@ -53,14 +53,14 @@ $total_pages = ceil($total_events / $limit); ?>
         <!-- Filter Form -->
         <form method="GET" class="d-flex">
             <input type="text" name="filter_title" class="form-control me-2" placeholder="Search by Title" value="<?php echo htmlspecialchars($filter_title); ?>">
-            <button type="submit" class="btn btn-warning px-5">Search</button>
+            <button id="event_search_button" type="submit" class="btn btn-warning px-5">Search</button>
         </form>
     </div>
 </div>
 
 <!-- Event Table with Sorting -->
 <div class="text-center">
-    <table class="table table-striped table-bordered table-hover text-center">
+    <table id="table_font" class="table table-striped table-bordered table-hover text-center">
         <thead class="table-info">
             <tr>
                 <th>SL</th>

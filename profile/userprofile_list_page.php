@@ -9,9 +9,9 @@ $stmt->execute();
 $result = $stmt->get_result();
 ?>
 
-<div>
+<div id="table_size">
     <h4 class="pb-3">All User List</h4>
-    <table class="table table-striped table-bordered table-hover text-center">
+    <table id="table_font" class="table table-striped table-bordered table-hover text-center">
         <thead class="table-info">
             <tr>
                 <th>SL</th>
