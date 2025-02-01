@@ -2,13 +2,13 @@
 $pageTitle = 'Login | EMS';
 
 // Include header
-include __DIR__.'/../layout/header.php';
+include __DIR__ . '/../layout/header.php';
 
 // Check if the user is logged in by verifying if 'user_id' is set
 if (isset($_SESSION['user_id'])) {
     // If the user is not logged in, redirect to the login page
     $_SESSION['info'] = "You are already loged in. If you want to login another account, logout first.";
-    header('Location: index.php');
+    header('Location: ' . BASE_URL . 'index.php');
     exit();  // Stop further execution of the script
 }
 ?>

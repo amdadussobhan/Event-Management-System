@@ -53,7 +53,14 @@ include '../layout/header.php';
     </div>
 </div>
 
-<?php include '../layout/footer.php'; ?>
+<!-- Include the footer -->
+<?php
+include '../layout/footer.php';
+unset($_SESSION['info']);  // Clear the info message after displaying
+unset($_SESSION['errors']);  // Clear the error message after displaying
+unset($_SESSION['success']);  // Clear the success message after displaying
+unset($_SESSION['form_data']);  // Clear the success message after displaying
+?>
 
 <script>
     $(document).ready(function() {
@@ -61,7 +68,7 @@ include '../layout/header.php';
 
         // Fetch event details via AJAX
         $.ajax({
-            url: '/ems/events/event_details_api.php',
+            url: '<?php echo BASE_URL; ?>events/event_details_api.php',
             method: 'GET',
             data: {
                 event_id: eventId
@@ -78,7 +85,7 @@ include '../layout/header.php';
                     $('#date').text('Date: ' + event.date);
                     $('#max_capacity').text('Max Capacity: ' + event.max_capacity + ' Person');
                     if (event.cover_photo)
-                        $('#image').attr('src', '/ems/' + event.cover_photo);
+                        $('#image').attr('src', '<?php echo BASE_URL; ?>' + event.cover_photo);
                     
                     if (event.description)
                         $('#description').html('Description: ' + event.description);

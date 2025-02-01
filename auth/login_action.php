@@ -1,5 +1,6 @@
 <?php
 session_start();  // Start the session to store error messages and form data
+include '../config.php'; // Include database connection
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
             $_SESSION['role'] = $role;
-            header("Location: /ems/index.php");  // Redirect to the dashboard page
+            header("Location: " . BASE_URL . "index.php");  // Redirect to the dashboard page
             exit();
         } else {
             $errors['error'] = "Email or password is not correct. Please try again.";

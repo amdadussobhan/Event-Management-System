@@ -72,7 +72,7 @@ if ($stmt->num_rows > 0):
                     <div class="col mt-3">
                         <?php if (!empty($cover_photo)): ?>
                             <div>
-                                <img src="/ems/<?php echo htmlspecialchars($cover_photo); ?>" alt="Cover Photo" class="shadow" style="width: 100%; height: 111px;">
+                                <img src="<?php echo BASE_URL . htmlspecialchars($cover_photo); ?>" alt="Cover Photo" class="shadow" style="width: 100%; height: 111px;">
                             </div>
                         <?php endif; ?>
                     </div>

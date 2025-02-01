@@ -11,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Initialize an array to store error messages
     $errors = [];
 
+    // Regular expression for password validation
+    $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W]).{8,}$/';
+
     // Validation checks
     if (empty($name))
         $errors['name'] = 'Name field is required.';
@@ -18,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['email'] = 'Email field is required.';
     if (empty($password))
         $errors['password'] = 'Password field are required.';
+    elseif (!preg_match($pattern, $password))
+        $errors['password'] = 'minimum 8 characters with uppercase, lowercase, number and special character.';
 
     // If there are validation errors, store them in the session and redirect back
     if (!empty($errors)) {
