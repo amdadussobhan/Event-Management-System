@@ -6,9 +6,9 @@ include '../layout/header.php';
 <h4 id="title">Title: </h4>
 <div class="overflow-hidden">
     <div class="mx-2">
-        <h5 id="date" class='pe-5 pt-2' style='float: left;'> Date:</h5>
-        <h5 id="max_capacity" class='pt-2' style='float: left;'> Max Capacity:</h5>
-        <a id="register" class='btn px-5' style='float: right;'>Register This Event</a>
+        <h5 id="date" class='pe-5 pt-2 heading_font' style='float: left;'> Date:</h5>
+        <h5 id="max_capacity" class='pt-2 heading_font' style='float: left;'> Max Capacity:</h5>
+        <a id="register" class='btn px-5 mb-2 heading_font' style='float: right;'>Register This Event</a>
     </div>
     <div class="shadow m-2">
         <img id="image" alt='Cover Photo' style='height:250px; width:100%'>
@@ -18,7 +18,7 @@ include '../layout/header.php';
 
 <!-- Modal for Event Registration -->
 <div class="modal modal-lg fade" id="registerEventModal" tabindex="-1" aria-labelledby="registerEventModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="registerEventModalLabel">Complete Event Registration</h5>

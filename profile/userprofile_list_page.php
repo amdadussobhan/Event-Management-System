@@ -11,7 +11,7 @@ $result = $stmt->get_result();
 
 <div id="table_size">
     <h4 class="pb-3">All User List</h4>
-    <table id="table_font" class="table table-striped table-bordered table-hover text-center">
+    <table id="table_font" class="table table-striped table-bordered table-hover text-center align-middle">
         <thead class="table-info">
             <tr>
                 <th>SL</th>

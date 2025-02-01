@@ -52,6 +52,11 @@
         font-size: 0.8rem !important;
     }
 
+    .heading_font{
+        font-size: 0.8rem !important;
+        padding: 0 5px !important;
+    }
+
     #footer_heading{
         font-size: 0.8rem !important;
     }

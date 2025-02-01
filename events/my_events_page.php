@@ -60,7 +60,7 @@ $total_pages = ceil($total_events / $limit); ?>
 
 <!-- Event Table with Sorting -->
 <div class="text-center">
-    <table id="table_font" class="table table-striped table-bordered table-hover text-center">
+    <table id="table_font" class="table table-striped table-bordered table-hover text-center align-middle">
         <thead class="table-info">
             <tr>
                 <th>SL</th>
