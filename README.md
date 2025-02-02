@@ -1,5 +1,6 @@
 # Event Management System (EMS) ---> [Live Link](http://ems-ollyo.rf.gd/) 
-![EMS_Dashboard](https://github.com/user-attachments/assets/8fdaca32-a92a-43af-a200-5ad4a173c65f)
+![EMS_Dashboard](https://github.com/user-attachments/assets/964d149c-91dc-4fca-a598-27649297c99e)
+
 
 ## User Access Credential
 |Type|User|Pass|
