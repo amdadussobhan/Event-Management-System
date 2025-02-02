@@ -14,8 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validation checks
     if (empty($name))
         $errors['name'] = 'Name field is required.';
+
+    // Validate email format
     if (empty($email))
         $errors['email'] = 'Email field is required.';
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        $errors['email'] = "Invalid email format. Please enter a valid email address.";
+
     if (empty($role))
         $errors['role'] = 'Role field is required.';
 

@@ -52,4 +52,5 @@ include '../layout/footer.php';
 unset($_SESSION['info']);  // Clear the info message after displaying
 unset($_SESSION['errors']);  // Clear the error message after displaying
 unset($_SESSION['success']);  // Clear the success message after displaying
+unset($_SESSION['form_data']);  // Clear the success message after displaying
 ?>

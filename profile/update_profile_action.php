@@ -17,9 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validation checks
     if (empty($name))
         $errors['name'] = 'Name field is required.';
+
+    // Validate email format
     if (empty($email))
         $errors['email'] = 'Email field is required.';
-    
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        $errors['email'] = "Invalid email format. Please enter a valid email address.";
+
     if (empty($password1) || empty($password2))
         $errors['password'] = 'Both password fields are required.';
     elseif ($password1 != $password2)
@@ -71,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors['info'] = 'Something went wrong, Try again.';
             $_SESSION['errors'] = $errors;
         }
-        
+
         header('Location: update_profile_page.php');
         $stmt->close();
         $conn->close();
