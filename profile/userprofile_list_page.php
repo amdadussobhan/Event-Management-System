@@ -11,8 +11,8 @@ $result = $stmt->get_result();
 
 <div id="table_size">
     <h4 class="pb-3">All User List</h4>
-    <table id="table_font" class="table table-striped table-bordered table-hover text-center align-middle">
-        <thead class="table-info">
+    <table id="table_font" class="table table-striped table-bordered table-hover text-center">
+        <thead class="table-info align-middle">
             <tr>
                 <th>SL</th>
                 <th>Full Name</th>
@@ -22,7 +22,7 @@ $result = $stmt->get_result();
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody class="table-group-divider">
+        <tbody class="table-group-divider align-middle">
             <?php $SL = 1;
             while ($row = $result->fetch_assoc()): ?>
                 <tr>

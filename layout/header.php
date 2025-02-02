@@ -20,7 +20,7 @@ $form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
 
 <body>
     <?php include 'navbar.php'; ?>
-    <div id="main_div" class="container mt-2 text-center">
+    <div id="main_div" class="container mt-3 text-center">
         <?php // Displaying message if it exists
         if (isset($_SESSION['success']))
             echo "<h4 id='success' class='text-success pb-4'>" . $_SESSION['success'] . "</h4>";
