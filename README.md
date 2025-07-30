@@ -1,12 +1,5 @@
-# Event Management System (EMS) ---> [Live Link](http://ems-ollyo.rf.gd/) 
+# Event Management System (EMS)
 ![EMS_Dashboard](https://github.com/user-attachments/assets/964d149c-91dc-4fca-a598-27649297c99e)
-
-
-## User Access Credential
-|Type|User|Pass|
-|-|-|-|
-|Admin User|admin@email.com|@dm!nPane1|
-|General user|user@email.com|u$erPane1|
 
 ## Introduction
 It have developed with raw PHP with MySQL that allows users to manage events, register attendees, and download participants lists.
